@@ -17,6 +17,8 @@ namespace WindowsFormsApp2
             InitializeComponent();
         }
         public int PrestigeCof = 1;
+        public bool visibleBtn = false;
+        public bool lovyshka = false;
         public Random rnd = new Random();
         public int clicks = 0;
         public int shopPoint = 0;
@@ -28,7 +30,8 @@ namespace WindowsFormsApp2
         public int exp = 0;
         
         private void button1_Click(object sender, EventArgs e)
-        {
+        {    
+            
             clicks += upg*PrestigeCof;
             exp+= 1*PrestigeCof;
             label14.Text = "ваш опыт:"+exp;
@@ -65,6 +68,17 @@ namespace WindowsFormsApp2
             {
                 button6.Visible = false;
             }
+            if (exp >250)
+            {
+                int rndNum = rnd.Next(1, 100);
+                if (rndNum == 25)
+                {
+                    button7.Visible = true;
+                    timer = 10;
+                    timer1.Start();
+
+                }
+            }
         }
 
        
@@ -97,6 +111,7 @@ namespace WindowsFormsApp2
                 timer1.Stop();
                 timer = 10;
                 label2.Text = "таймер:";
+                button7.Visible = false;
             }
         }
 
@@ -162,6 +177,14 @@ namespace WindowsFormsApp2
             else
             {
                 MessageBox.Show("вам не хватает");
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (timer1.Enabled)
+            {
+                clicks += upg * PrestigeCof * 10;
             }
         }
 
